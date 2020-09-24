@@ -49,7 +49,7 @@ export default class RandomChar extends Component {
             <View character={character} />
         ) : null;
         return (
-            <div className="random-block rounded">
+            <div className="random-block rounded show">
                 {errorMessage}
                 {spinner}
                 {content}

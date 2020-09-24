@@ -10,3 +10,6 @@
 .term {
     font-weight: bold;
 }
+.hide {
+    display: none;
+}
