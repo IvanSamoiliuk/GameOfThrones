@@ -5,11 +5,6 @@ import GOTServices from "../../services/apiService";
 import "./randomChar.css";
 import ErrorMessage from "../errorMessage";
 export default class RandomChar extends Component {
-    constructor() {
-        super();
-        this.updateCharacter();
-    }
-
     state = {
         character: {},
         loading: true,
@@ -31,6 +26,14 @@ export default class RandomChar extends Component {
             loading: false,
         });
     };
+
+    componentDidMount() {
+        this.timerID = setInterval(this.updateCharacter, 3000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
 
     updateCharacter = () => {
         const id = Math.floor(Math.random() * 150 + 25);

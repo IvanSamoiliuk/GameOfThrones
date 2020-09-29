@@ -11,9 +11,9 @@ export default class GOTServices {
         return await res.json();
     }
 
-    async getCharacters() {
+    async getAllCharacters() {
         const characters = await this.getResourse(
-            `characters?page=5&pageSize=7`
+            `characters?page=5&pageSize=10`
         );
         return characters.map(this._transformCharacter);
     }
@@ -23,7 +23,7 @@ export default class GOTServices {
         return this._transformCharacter(character);
     }
 
-    async getHouses() {
+    async getAllHouses() {
         return this.getResourse(`houses`);
     }
 
@@ -31,7 +31,7 @@ export default class GOTServices {
         return this.getResourse(`houses/${id}`);
     }
 
-    async getBooks() {
+    async getAllBooks() {
         return this.getResourse(`books`);
     }
 
@@ -39,13 +39,29 @@ export default class GOTServices {
         return this.getResourse(`books/${id}`);
     }
 
-    _transformCharacter(character) {
-        return {
-            name: character.name || 'no information available',
-            gender: character.gender || 'no information available',
-            born: character.born || 'no information available',
-            died: character.died || 'no information available',
-            culture: character.culture || 'no information available',
-        };
+    isData(data) {
+        if (data) {
+            return data;
+        } else {
+            return "No data";
+        }
     }
+
+    _extractId = (item) => {
+        const idRegExp = /\/([0-9]*)$/;
+        return item.url.match(idRegExp)[1];
+        // const arr = item.split("/");
+        // return arr[arr.length - 1];
+    };
+
+    _transformCharacter = (character) => {
+        return {
+            id: this._extractId(character),
+            name: this.isData(character.name),
+            gender: this.isData(character.gender),
+            born: this.isData(character.born),
+            died: this.isData(character.died),
+            culture: this.isData(character.culture),
+        };
+    };
 }
