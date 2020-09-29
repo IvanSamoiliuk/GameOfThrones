@@ -41,6 +41,34 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage />
+                    {/* <Row>
+                        <Col md="6">
+                            <ItemList
+                                onCharacterSelect={this.onCharacterSelect}
+                            />
+                        </Col>
+                        <Col md="6">
+                            <CharDetails
+                                selectedCharacterID={
+                                    this.state.selectedCharacterID
+                                }
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="6">
+                            <ItemList
+                                onCharacterSelect={this.onCharacterSelect}
+                            />
+                        </Col>
+                        <Col md="6">
+                            <CharDetails
+                                selectedCharacterID={
+                                    this.state.selectedCharacterID
+                                }
+                            />
+                        </Col>
+                    </Row> */}
                 </Container>
             </>
         );

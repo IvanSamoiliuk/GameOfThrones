@@ -3,43 +3,43 @@ export default class GOTServices {
         this._apiBase = "https://www.anapioficeandfire.com/api/";
     }
 
-    async getResourse(url) {
+    getResourse = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, status: ${res.status}`);
         }
         return await res.json();
-    }
+    };
 
-    async getAllCharacters() {
+    getAllCharacters = async () => {
         const characters = await this.getResourse(
             `characters?page=5&pageSize=10`
         );
         return characters.map(this._transformCharacter);
-    }
+    };
 
-    async getCharacter(id) {
+    getCharacter = async (id) => {
         const character = await this.getResourse(`characters/${id}`);
         return this._transformCharacter(character);
-    }
+    };
 
-    async getAllHouses() {
+    getAllHouses = async () => {
         return this.getResourse(`houses`);
-    }
+    };
 
-    async getHouse(id) {
+    getHouse = async (id) => {
         return this.getResourse(`houses/${id}`);
-    }
+    };
 
-    async getAllBooks() {
+    getAllBooks = async () => {
         return this.getResourse(`books`);
-    }
+    };
 
-    async getBook(id) {
+    getBook = async (id) => {
         return this.getResourse(`books/${id}`);
-    }
+    };
 
-    isData(data) {
+    isSet(data) {
         if (data) {
             return data;
         } else {
@@ -57,11 +57,11 @@ export default class GOTServices {
     _transformCharacter = (character) => {
         return {
             id: this._extractId(character),
-            name: this.isData(character.name),
-            gender: this.isData(character.gender),
-            born: this.isData(character.born),
-            died: this.isData(character.died),
-            culture: this.isData(character.culture),
+            name: this.isSet(character.name),
+            gender: this.isSet(character.gender),
+            born: this.isSet(character.born),
+            died: this.isSet(character.died),
+            culture: this.isSet(character.gender),
         };
     };
 }

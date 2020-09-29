@@ -4,8 +4,11 @@ import ItemList from "../itemList";
 import CharDetails from "../charDetails";
 import "./characterPage.css";
 import ErrorMessage from "../errorMessage";
+import GOTServices from "../../services/apiService";
 
 export default class CharacterPage extends Component {
+    gotServices = new GOTServices();
+
     state = {
         selectedCharacterID: null,
         error: false,
@@ -29,7 +32,10 @@ export default class CharacterPage extends Component {
         return (
             <Row>
                 <Col md="6">
-                    <ItemList onCharacterSelect={this.onCharacterSelect} />
+                    <ItemList
+                        getData={this.gotServices.getAllCharacters}
+                        onCharacterSelect={this.onCharacterSelect}
+                    />
                 </Col>
                 <Col md="6">
                     <CharDetails
