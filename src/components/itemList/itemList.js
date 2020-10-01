@@ -3,7 +3,6 @@ import Spinner from "../spinner";
 import "./itemList.css";
 import ErrorMessage from "../errorMessage";
 export default class ItemList extends Component {
-
     state = {
         itemList: null,
         loading: true,
@@ -37,7 +36,8 @@ export default class ItemList extends Component {
 
     renderItems = (itemList) => {
         return itemList.map((item) => {
-            const { id, name } = item;
+            const { id } = item;
+            const label = this.props.renderItem(item);
             return (
                 <li
                     key={id}
@@ -46,7 +46,7 @@ export default class ItemList extends Component {
                         this.props.onCharacterSelect(id);
                     }}
                 >
-                    {name}
+                    {label}
                 </li>
             );
         });
@@ -61,8 +61,8 @@ export default class ItemList extends Component {
             return <Spinner />;
         }
 
-        const items = this.renderItems(itemList);
+        const s = this.renderItems(itemList);
 
-        return <ul className="item-list list-group">{items}</ul>;
+        return <ul className="item-list list-group">{s}</ul>;
     }
 }

@@ -5,8 +5,13 @@ import RandomChar from "../randomChar";
 import "./app.css";
 import ErrorMessage from "../errorMessage";
 import CharacterPage from "../characterPage/characterPage";
+import ItemList from "../itemList";
+import CharDetails from "../charDetails";
+import GOTServices from "../../services/apiService";
 
 export default class App extends Component {
+    gotServices = new GOTServices();
+
     state = {
         showRandomChar: true,
     };
@@ -44,6 +49,7 @@ export default class App extends Component {
                     {/* <Row>
                         <Col md="6">
                             <ItemList
+                                getData={this.gotServices.getAllBooks}
                                 onCharacterSelect={this.onCharacterSelect}
                             />
                         </Col>
@@ -58,6 +64,7 @@ export default class App extends Component {
                     <Row>
                         <Col md="6">
                             <ItemList
+                                getData={this.gotServices.getAllHouses}
                                 onCharacterSelect={this.onCharacterSelect}
                             />
                         </Col>
