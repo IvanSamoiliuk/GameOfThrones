@@ -5,9 +5,9 @@ import RandomChar from "../randomChar";
 import "./app.css";
 import ErrorMessage from "../errorMessage";
 import CharacterPage from "../characterPage/characterPage";
-import ItemList from "../itemList";
-import CharDetails from "../charDetails";
 import GOTServices from "../../services/apiService";
+import BooksPage from "../pages/booksPage/booksPage";
+import HousesPage from "../pages/housesPage/housesPage";
 
 export default class App extends Component {
     gotServices = new GOTServices();
@@ -46,11 +46,13 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage />
+                    <BooksPage />
+                    <HousesPage />
                     {/* <Row>
                         <Col md="6">
                             <ItemList
                                 getData={this.gotServices.getAllBooks}
-                                onCharacterSelect={this.onCharacterSelect}
+                                onItemSelect={this.onItemSelect}
                             />
                         </Col>
                         <Col md="6">
@@ -65,7 +67,7 @@ export default class App extends Component {
                         <Col md="6">
                             <ItemList
                                 getData={this.gotServices.getAllHouses}
-                                onCharacterSelect={this.onCharacterSelect}
+                                onItemSelect={this.onItemSelect}
                             />
                         </Col>
                         <Col md="6">

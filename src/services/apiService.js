@@ -24,19 +24,23 @@ export default class GOTServices {
     };
 
     getAllHouses = async () => {
-        return this.getResourse(`houses`);
+        const houses = await this.getResourse(`houses`);
+        return houses.map(this._transformHouse);
     };
 
     getHouse = async (id) => {
-        return this.getResourse(`houses/${id}`);
+        const house = await this.getResourse(`houses/${id}`);
+        return this._transformHouse(house);
     };
 
     getAllBooks = async () => {
-        return this.getResourse(`books`);
+        const books = await this.getResourse(`books`);
+        return books.map(this._transformBook);
     };
 
     getBook = async (id) => {
-        return this.getResourse(`books/${id}`);
+        const book = await this.getResourse(`books/${id}`);
+        return this._transformBook(book);
     };
 
     isSet(data) {
@@ -61,7 +65,26 @@ export default class GOTServices {
             gender: this.isSet(character.gender),
             born: this.isSet(character.born),
             died: this.isSet(character.died),
-            culture: this.isSet(character.gender),
+            culture: this.isSet(character.culture),
+        };
+    };
+
+    _transformBook = (book) => {
+        return {
+            id: this._extractId(book),
+            name: this.isSet(book.name),
+            authors: this.isSet(book.authors),
+            numberOfPages: this.isSet(book.numberOfPages),
+        };
+    };
+
+    _transformHouse = (house) => {
+        return {
+            id: this._extractId(house),
+            name: this.isSet(house.name),
+            region: this.isSet(house.region),
+            words: this.isSet(house.words),
+            currentLord: this.isSet(house.currentLord),
         };
     };
 }
