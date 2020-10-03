@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ItemList from "../../itemList";
-import ItemDetails, { Field } from "../../charDetails";
-import "./characterPage.css";
+import ItemDetails, { Field } from "../../itemDetails";
+import "./charactersPage.css";
 import ErrorMessage from "../../errorMessage";
 import GOTServices from "../../../services/apiService";
 import RowBlock from "../../rowBlock";

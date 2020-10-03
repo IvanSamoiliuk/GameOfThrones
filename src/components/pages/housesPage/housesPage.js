@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import GOTServices from "../../../services/apiService";
-import ItemDetails, { Field } from "../../charDetails";
+import ItemDetails, { Field } from "../../itemDetails";
 import ErrorMessage from "../../errorMessage";
 import ItemList from "../../itemList";
 import RowBlock from "../../rowBlock";
