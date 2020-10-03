@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Spinner from "../spinner/";
 import GOTServices from "../../services/apiService";
+import PropTypes from "prop-types";
 
 import "./randomChar.css";
 import ErrorMessage from "../errorMessage";
@@ -10,6 +11,27 @@ export default class RandomChar extends Component {
         loading: true,
         error: false,
     };
+
+    static defaultProps = {
+        interval: 3000,
+    };
+
+    static propTypes = {
+        interval: PropTypes.number,
+    };
+
+    // проверка типа нативными средствами
+    // static propTypes = {
+    //     interval: (props, propName, componentName) => {
+    //         const value = props[propName];
+    //         if (typeof value === "number" && !isNaN(value)) {
+    //             return null;
+    //         }
+    //         return new TypeError(
+    //             `${componentName}: ${propName} mast be a number`
+    //         );
+    //     },
+    // };
 
     gotServices = new GOTServices();
 
@@ -28,7 +50,7 @@ export default class RandomChar extends Component {
     };
 
     componentDidMount() {
-        this.timerID = setInterval(this.updateCharacter, 3000);
+        this.timerID = setInterval(this.updateCharacter, this.props.interval);
     }
 
     componentWillUnmount() {
@@ -60,6 +82,11 @@ export default class RandomChar extends Component {
         );
     }
 }
+
+// вместо static defaultProps
+// RandomChar.defaultProps = {
+//     interval: 3000,
+// };
 
 function View({ character }) {
     const { name, gender, born, died, culture } = character;

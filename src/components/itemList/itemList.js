@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import Spinner from "../spinner";
 import "./itemList.css";
 import ErrorMessage from "../errorMessage";
+import PropTypes from "prop-types";
 export default class ItemList extends Component {
     state = {
         itemList: null,
         loading: true,
         error: false,
+    };
+
+    static defaultProps = {
+        onItemSelect: () => {},
+    };
+
+    static propTypes = {
+        onItemSelect: PropTypes.func,
     };
 
     componentDidMount() {
